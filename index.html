@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Password Generator | Secure & Free</title>
+    <meta name="description" content="Free and Secure Password Generator with advanced features">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/components/themes.css">
+    <link rel="stylesheet" href="styles/components/header.css">
+    <link rel="stylesheet" href="styles/components/generator.css">
+    <link rel="stylesheet" href="styles/components/settings.css">
+    <link rel="stylesheet" href="styles/components/responsive.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-theme="light">
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="logo">
+                <i class="fas fa-lock-shield"></i>
+                SecurePass Generator
+            </h1>
+            <div class="header-controls">
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="themeCheckbox">
+                        <input type="checkbox" id="themeCheckbox">
+                        <div class="slider round"></div>
+                    </label>
+                    <span class="theme-label" id="themeLabel">Dark Mode</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Password Display Section -->
+        <section class="password-section">
+            <div class="result-container">
+                <textarea 
+                    id="passwordResult" 
+                    readonly 
+                    placeholder="Your generated password will appear here..."
+                    aria-label="Generated password"
+                ></textarea>
+                <div class="result-actions">
+                    <button class="icon-btn" id="copyBtn" title="Copy password">
+                        <i class="far fa-copy"></i>
+                    </button>
+                    <button class="icon-btn" id="refreshBtn" title="Generate new password">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Password Strength Indicator -->
+            <div class="strength-meter">
+                <div class="strength-labels">
+                    <span>Weak</span>
+                    <span>Fair</span>
+                    <span>Good</span>
+                    <span>Strong</span>
+                    <span>Very Strong</span>
+                </div>
+                <div class="strength-bar">
+                    <div class="strength-fill" id="strengthFill"></div>
+                </div>
+                <div class="strength-text" id="strengthText">Password Strength</div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="settings-section">
+            <h2 class="section-title">Password Settings</h2>
+            
+            <!-- Length Setting -->
+            <div class="setting-group">
+                <div class="setting-header">
+                    <label for="passwordLength" class="setting-label">Password Length</label>
+                    <span class="length-value" id="lengthValue">12</span>
+                </div>
+                <input 
+                    type="range" 
+                    id="passwordLength" 
+                    min="4" 
+                    max="32" 
+                    value="12"
+                    class="length-slider"
+                >
+                <div class="length-labels">
+                    <span>4</span>
+                    <span>32</span>
+                </div>
+            </div>
+
+            <!-- Character Types -->
+            <div class="setting-group">
+                <h3 class="setting-subtitle">Character Types</h3>
+                <div class="checkbox-grid">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="uppercase" checked>
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">
+                            <i class="fas fa-font"></i>
+                            Uppercase Letters (A-Z)
+                        </span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="lowercase" checked>
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">
+                            <i class="fas fa-font"></i>
+                            Lowercase Letters (a-z)
+                        </span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="numbers" checked>
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">
+                            <i class="fas fa-hashtag"></i>
+                            Numbers (0-9)
+                        </span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="symbols" checked>
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">
+                            <i class="fas fa-asterisk"></i>
+                            Symbols (!@#$%^&*)
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Additional Options -->
+            <div class="setting-group">
+                <h3 class="setting-subtitle">Additional Options</h3>
+                <div class="checkbox-grid">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="excludeSimilar">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">
+                            Exclude similar characters (i, l, 1, L, o, 0, O)
+                        </span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="excludeAmbiguous">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-text">
+                            Exclude ambiguous characters ({ } [ ] ( ) / \ ' " ` ~ , ; : . < >)
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="actions-section">
+            <button class="btn btn-primary btn-large" id="generateBtn">
+                <i class="fas fa-key"></i>
+                Generate Password
+            </button>
+            <div class="secondary-actions">
+                <button class="btn btn-secondary" id="saveProfileBtn">
+                    <i class="far fa-save"></i>
+                    Save Profile
+                </button>
+                <button class="btn btn-secondary" id="historyBtn">
+                    <i class="far fa-clock"></i>
+                    History
+                </button>
+            </div>
+        </section>
+
+        <!-- Password History Modal -->
+        <div class="modal" id="historyModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Password History</h3>
+                    <button class="close-modal" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <ul class="history-list" id="historyList">
+                        <!-- History items will be added here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification -->
+        <div class="notification" id="notification">
+            <span class="notification-text" id="notificationText"></span>
+        </div>
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="js/utils/helpers.js"></script>
+    <script src="js/modules/themeManager.js"></script>
+    <script src="js/modules/strengthChecker.js"></script>
+    <script src="js/modules/passwordGenerator.js"></script>
+    <script src="js/modules/clipboard.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
