@@ -1,0 +1,32 @@
+{
+  "name": "securepass-generator",
+  "version": "1.0.0",
+  "description": "A modern, secure, and feature-rich password generator",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000",
+    "dev": "live-server --port=3000 --watch=styles/,js/",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "password-generator",
+    "security",
+    "javascript",
+    "css",
+    "html",
+    "web-app"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/securepass-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/securepass-generator/issues"
+  },
+  "homepage": "https://github.com/yourusername/securepass-generator#readme"
+}
